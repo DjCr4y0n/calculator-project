@@ -26,3 +26,12 @@ for (i=0; i<5;i++)
     fbutton.style.backgroundColor = '#1f2937'
     functionsContainer.appendChild(fbutton);
 }
+let resultButton = document.createElement('button');
+resultButton.style.textAlign = 'center';
+resultButton.className = 'button';
+resultButton.style.width = '100px';
+resultButton.style.height = '200px';
+resultButton.style.color = 'white';
+resultButton.textContent = '=';
+resultButton.style.backgroundColor = 'green';
+functionsContainer.appendChild(resultButton);
