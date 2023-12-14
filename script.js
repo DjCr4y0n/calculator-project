@@ -39,7 +39,8 @@ functionsContainer.appendChild(clearButton);
 
 let resultButton = document.createElement('button');
 resultButton.style.textAlign = 'center';
-resultButton.className = 'resultButton';
+resultButton.className = 'button';
+resultButton.id = 'resultButton'
 resultButton.style.width = '100px';
 resultButton.style.height = '200px';
 resultButton.style.color = 'white';
@@ -47,7 +48,7 @@ resultButton.textContent = '=';
 resultButton.style.backgroundColor = 'green';
 functionsContainer.appendChild(resultButton);
 
-var currentNumber = '0';
+var currentNumber = '';
 var firstNumber = '';
 var secondNumber = '';
 var operator = '';
@@ -66,14 +67,14 @@ function multiply(a,b)
 }
 function divide(a,b)
 {
-    return a / secondNumber;
+    return a / b;
 }
 function operate(a,b,operator)
 {
-    if(operator == '+') add(a,b);
-    else if(operator == '-') substract(a,b);
-    else if(operator == '*') multiply(a,b);
-    else divide(a,b);
+    if(operator == '+') return add(a,b);
+    else if(operator == '-') return substract(a,b);
+    else if(operator == '*') return multiply(a,b);
+    else return divide(a,b);
 }
 const buttons = document.querySelectorAll('.button');
 buttons.forEach(button =>
@@ -86,19 +87,28 @@ buttons.forEach(button =>
             {
                 currentNumber += button.textContent;
             }
+            else if(button.textContent == '=')
+            {
+                secondNumber = Number(currentNumber)
+                console.log('Result');
+                console.log(operate(firstNumber,secondNumber,operator));
+            }
             else 
             {
-                if(currentNumber == '0') firstNumber = 0;
+                operator = button.textContent;
+                if(currentNumber.length == 0) firstNumber = 0;
                 else if(firstNumber.length == 0)
                 {
-                    firstNumber = Number(currentNumber);
+                    firstNumber = parseInt(currentNumber);
                 }
-                else secondNumber = Number(currentNumber);
-                currentNumber = '0'
+                else secondNumber = parseInt(currentNumber);
+                currentNumber = ''
             }
             console.log(currentNumber);
             console.log(firstNumber);
             console.log(secondNumber);
+            console.log(operator)
         })
     })
+
 
