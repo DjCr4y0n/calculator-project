@@ -90,8 +90,11 @@ buttons.forEach(button =>
             else if(button.textContent == '=')
             {
                 secondNumber = Number(currentNumber)
-                console.log('Result');
-                console.log(operate(firstNumber,secondNumber,operator));
+                pom = operate(firstNumber,secondNumber,operator)
+                console.log("result     " + pom);
+                firstNumber = ''
+                secondNumber = ''
+                currentNumber = pom;
             }
             else 
             {
@@ -104,10 +107,10 @@ buttons.forEach(button =>
                 else secondNumber = parseInt(currentNumber);
                 currentNumber = ''
             }
-            console.log(currentNumber);
-            console.log(firstNumber);
-            console.log(secondNumber);
-            console.log(operator)
+            console.log("current     " + currentNumber);
+            console.log("first    " + firstNumber);
+            console.log("second     " + secondNumber);
+            console.log("operator    " + operator)
         })
     })
 
