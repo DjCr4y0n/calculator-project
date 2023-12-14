@@ -13,7 +13,7 @@ for (i=0;i<10;i++)
     button.style.backgroundColor = '#1f2937';
     numbersContainer.appendChild(button);
 }
-let functionsArray = ['+','-', '*', '/','clear']
+let functionsArray = ['+','-', '*', '/']
 for (i=0; i<functionsArray.length;i++)
 {
     let fbutton = document.createElement('button');
@@ -26,9 +26,20 @@ for (i=0; i<functionsArray.length;i++)
     fbutton.style.backgroundColor = '#1f2937'
     functionsContainer.appendChild(fbutton);
 }
+
+let clearButton = document.createElement('button');
+clearButton.style.textAlign = 'center';
+clearButton.className = 'resultButton';
+clearButton.style.width = '100px';
+clearButton.style.height = '100px';
+clearButton.style.color = 'white';
+clearButton.textContent = 'clear';
+clearButton.style.backgroundColor = '#1f2937';
+functionsContainer.appendChild(clearButton);
+
 let resultButton = document.createElement('button');
 resultButton.style.textAlign = 'center';
-resultButton.className = 'button';
+resultButton.className = 'resultButton';
 resultButton.style.width = '100px';
 resultButton.style.height = '200px';
 resultButton.style.color = 'white';
@@ -36,30 +47,58 @@ resultButton.textContent = '=';
 resultButton.style.backgroundColor = 'green';
 functionsContainer.appendChild(resultButton);
 
+var currentNumber = '0';
 var firstNumber = '';
 var secondNumber = '';
 var operator = '';
 var displayValue = 0;
-function add(firstNumber,secondNumber)
+function add(a,b)
 {
-    return firstNumber + secondNumber;
+    return a + b;
 }
-function substract(firstNumber,secondNumber)
+function substract(a,b)
 {
-    return firstNumber - secondNumber;
+    return a - b;
 }
-function multiply(firstNumber,secondNumber)
+function multiply(a,b)
 {
-    return firstNumber * secondNumber;
+    return a * b;
 }
-function divide(firstNumber,secondNumber)
+function divide(a,b)
 {
-    return firstNumber / secondNumber;
+    return a / secondNumber;
 }
-function operate(firstNumber,secondNumber,operator)
+function operate(a,b,operator)
 {
-    if(operator == '+') add(firstNumber,secondNumber);
-    else if(operator == '-') substract(firstNumber,secondNumber);
-    else if(operator == '*') multiply(firstNumber,secondNumber);
-    else divide(firstNumber,secondNumber);
+    if(operator == '+') add(a,b);
+    else if(operator == '-') substract(a,b);
+    else if(operator == '*') multiply(a,b);
+    else divide(a,b);
 }
+const buttons = document.querySelectorAll('.button');
+buttons.forEach(button =>
+    {
+
+        button.addEventListener('click', function handleCLick()
+        {
+            console.log('clicked');
+            if(['0','1','2','3','4','5','6','7','8','9'].indexOf(button.textContent) >= 0 )
+            {
+                currentNumber += button.textContent;
+            }
+            else 
+            {
+                if(currentNumber == '0') firstNumber = 0;
+                else if(firstNumber.length == 0)
+                {
+                    firstNumber = Number(currentNumber);
+                }
+                else secondNumber = Number(currentNumber);
+                currentNumber = '0'
+            }
+            console.log(currentNumber);
+            console.log(firstNumber);
+            console.log(secondNumber);
+        })
+    })
+
