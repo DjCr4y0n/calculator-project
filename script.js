@@ -39,7 +39,27 @@ functionsContainer.appendChild(resultButton);
 var firstNumber = '';
 var secondNumber = '';
 var operator = '';
+var displayValue = 0;
+function add(firstNumber,secondNumber)
+{
+    return firstNumber + secondNumber;
+}
+function substract(firstNumber,secondNumber)
+{
+    return firstNumber - secondNumber;
+}
+function multiply(firstNumber,secondNumber)
+{
+    return firstNumber * secondNumber;
+}
+function divide(firstNumber,secondNumber)
+{
+    return firstNumber / secondNumber;
+}
 function operate(firstNumber,secondNumber,operator)
 {
-
+    if(operator == '+') add(firstNumber,secondNumber);
+    else if(operator == '-') substract(firstNumber,secondNumber);
+    else if(operator == '*') multiply(firstNumber,secondNumber);
+    else divide(firstNumber,secondNumber);
 }
