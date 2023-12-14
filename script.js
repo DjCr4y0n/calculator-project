@@ -13,8 +13,8 @@ for (i=0;i<10;i++)
     button.style.backgroundColor = '#1f2937';
     numbersContainer.appendChild(button);
 }
-functionsArray = ['+','-', '*', '/', '=']
-for (i=0; i<5;i++)
+let functionsArray = ['+','-', '*', '/','clear']
+for (i=0; i<functionsArray.length;i++)
 {
     let fbutton = document.createElement('button');
     fbutton.style.textAlign = 'center';
@@ -35,3 +35,11 @@ resultButton.style.color = 'white';
 resultButton.textContent = '=';
 resultButton.style.backgroundColor = 'green';
 functionsContainer.appendChild(resultButton);
+
+var firstNumber = '';
+var secondNumber = '';
+var operator = '';
+function operate(firstNumber,secondNumber,operator)
+{
+
+}
