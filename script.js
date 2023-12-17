@@ -53,10 +53,11 @@ let operatorBox = document.querySelector(".operator-box");
 
 
 var currentNumber = '';
+currentNumber.maxLength = 10;
 var firstNumber = 0;
 var secondNumber = 0;
 var operator = '';
-function add(a,b)
+function add(a,b)  
 {
     return a + b;
 }
@@ -70,6 +71,7 @@ function multiply(a,b)
 }
 function divide(a,b)
 {
+    if(a==0) return "Error";
     return a / b;
 }
 function operate(a,b,operator)
@@ -97,7 +99,6 @@ buttons.forEach(button =>
     {
         button.addEventListener('click', function handleCLick()
         {
-            console.log('clicked');
             if(['0','1','2','3','4','5','6','7','8','9'].indexOf(button.textContent) >= 0 )
             {
                 currentNumber += button.textContent;
@@ -108,10 +109,11 @@ buttons.forEach(button =>
             else if(button.textContent == '=')
             {
                 pom = operate(firstNumber,secondNumber,operator);
-                console.log("result     " + pom);
                 secondNumber = '';
                 currentNumber = pom;
                 firstNumber = parseFloat(currentNumber);
+                operatorBox.textContent = '';
+                operator = '';
                 
                 numberBox.textContent = currentNumber;
             }
@@ -121,10 +123,6 @@ buttons.forEach(button =>
                 operatorBox.textContent = operator;
                 currentNumber = '';
             }
-            console.log("current     " + currentNumber);
-            console.log("first    " + firstNumber);
-            console.log("second     " + secondNumber);
-            console.log("operator    " + operator)
         })
     })
 
