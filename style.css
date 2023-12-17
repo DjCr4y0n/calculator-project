@@ -22,10 +22,21 @@
 
 .prompt
 {
+    display: inline-flex;
     border: solid;
     border-color: black;
     width: 494px;
     height: 100px;
+    font-size: 80px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    justify-content: space-between;
+}
+
+.operator-box
+{
+    width: 40px;
+    height: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body, html

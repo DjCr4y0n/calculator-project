@@ -48,6 +48,9 @@ resultButton.textContent = '=';
 resultButton.style.backgroundColor = 'green';
 functionsContainer.appendChild(resultButton);
 
+let prompt = document.querySelector(".number-box");
+let operatorBox = document.querySelector(".operator-box")
+
 var currentNumber = '';
 var firstNumber = '';
 var secondNumber = '';
@@ -86,26 +89,25 @@ buttons.forEach(button =>
             if(['0','1','2','3','4','5','6','7','8','9'].indexOf(button.textContent) >= 0 )
             {
                 currentNumber += button.textContent;
+                prompt.textContent = currentNumber;
+                if(operator == '') firstNumber = parseFloat(currentNumber);
+                else secondNumber = parseFloat(currentNumber);
             }
             else if(button.textContent == '=')
             {
-                secondNumber = Number(currentNumber)
-                pom = operate(firstNumber,secondNumber,operator)
+                pom = operate(firstNumber,secondNumber,operator);
                 console.log("result     " + pom);
-                firstNumber = ''
-                secondNumber = ''
+                secondNumber = '';
                 currentNumber = pom;
+                firstNumber = parseFloat(currentNumber);
+                
+                prompt.textContent = currentNumber;
             }
             else 
             {
                 operator = button.textContent;
-                if(currentNumber.length == 0) firstNumber = 0;
-                else if(firstNumber.length == 0)
-                {
-                    firstNumber = parseInt(currentNumber);
-                }
-                else secondNumber = parseInt(currentNumber);
-                currentNumber = ''
+                operatorBox.textContent = operator;
+                currentNumber = '';
             }
             console.log("current     " + currentNumber);
             console.log("first    " + firstNumber);
