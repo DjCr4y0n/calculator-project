@@ -29,7 +29,7 @@ for (i=0; i<functionsArray.length;i++)
 
 let clearButton = document.createElement('button');
 clearButton.style.textAlign = 'center';
-clearButton.className = 'resultButton';
+clearButton.className = 'clearButton';
 clearButton.style.width = '100px';
 clearButton.style.height = '100px';
 clearButton.style.color = 'white';
@@ -48,14 +48,14 @@ resultButton.textContent = '=';
 resultButton.style.backgroundColor = 'green';
 functionsContainer.appendChild(resultButton);
 
-let prompt = document.querySelector(".number-box");
-let operatorBox = document.querySelector(".operator-box")
+let numberBox = document.querySelector(".number-box");
+let operatorBox = document.querySelector(".operator-box");
+
 
 var currentNumber = '';
-var firstNumber = '';
-var secondNumber = '';
+var firstNumber = 0;
+var secondNumber = 0;
 var operator = '';
-var displayValue = 0;
 function add(a,b)
 {
     return a + b;
@@ -79,17 +79,29 @@ function operate(a,b,operator)
     else if(operator == '*') return multiply(a,b);
     else return divide(a,b);
 }
+
+clearButton.addEventListener('click', function handleCLick()
+{
+    currentNumber = '';
+    firstNumber = 0;
+    secondNumber = 0;
+    operator = '';
+    numberBox.textContent = 0;
+    operatorBox.textContent = '';
+})
+
+numberBox.textContent = 0;
+
 const buttons = document.querySelectorAll('.button');
 buttons.forEach(button =>
     {
-
         button.addEventListener('click', function handleCLick()
         {
             console.log('clicked');
             if(['0','1','2','3','4','5','6','7','8','9'].indexOf(button.textContent) >= 0 )
             {
                 currentNumber += button.textContent;
-                prompt.textContent = currentNumber;
+                numberBox.textContent = currentNumber;
                 if(operator == '') firstNumber = parseFloat(currentNumber);
                 else secondNumber = parseFloat(currentNumber);
             }
@@ -101,7 +113,7 @@ buttons.forEach(button =>
                 currentNumber = pom;
                 firstNumber = parseFloat(currentNumber);
                 
-                prompt.textContent = currentNumber;
+                numberBox.textContent = currentNumber;
             }
             else 
             {
